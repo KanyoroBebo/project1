@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+    <h1>Search Results</h1>
+    {% if matches %}
+        <p>Matches to your search {{ query }} :</p>
+        <ul>
+            {% for entry in matches %}
+            <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matches found to "{{ query }}".</p>
+        <a href="{% url 'index' %}">Return to Home</a>
+    {% endif %}
+{% endblock %}

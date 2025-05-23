@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+    <div>{{content|safe}}</div> <!-- Render HTML safely -->
+    <a href="{% url 'edit' title %}">Edit page</a> <br>
+    <a href="{% url 'index' %}">Back to Home</a> <br>
+    <form action="{% url 'delete' title %}" method="POST" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?');">
+            Delete Entry
+        </button>
+    </form>
+{% endblock %}
